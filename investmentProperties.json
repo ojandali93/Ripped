@@ -1,0 +1,198 @@
+[
+  {
+    "price": 350000,
+    "rentZestimate": 2149,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "3626 Clayton Trace Trl"
+  },
+  {
+    "price": 289900,
+    "rentZestimate": 2782,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "5710 Old Lodge Dr"
+  },
+  {
+    "price": 285000,
+    "rentZestimate": 1975,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "3431 Cave Springs Dr"
+  },
+  {
+    "price": 239999,
+    "rentZestimate": 1705,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "703 Corsica St"
+  },
+  {
+    "price": 409900,
+    "rentZestimate": 2600,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "807 Bringhurst St"
+  },
+  {
+    "price": 199000,
+    "rentZestimate": 1782,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "3502 Sardis Ln"
+  },
+  {
+    "price": 249000,
+    "rentZestimate": 1599,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "9706 Kingsville Park Dr"
+  },
+  {
+    "price": 334000,
+    "rentZestimate": 2334,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "414 Dinerstein St"
+  },
+  {
+    "price": 344470,
+    "rentZestimate": 2299,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "3209 Holman St"
+  },
+  {
+    "price": 257000,
+    "rentZestimate": 1845,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "1511 Plumwood Dr"
+  },
+  {
+    "price": 259000,
+    "rentZestimate": 1895,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "6901 Apollo St"
+  },
+  {
+    "price": 399900,
+    "rentZestimate": 2659,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "2206 Isabella St"
+  },
+  {
+    "price": 88000,
+    "rentZestimate": 1040,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "12905 Woodforest Blvd APT 406"
+  },
+  {
+    "price": 360000,
+    "rentZestimate": 2500,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "16815 Watering Oaks Ln"
+  },
+  {
+    "price": 359900,
+    "rentZestimate": 2600,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "2504 W Tidwell Rd"
+  },
+  {
+    "price": 549900,
+    "rentZestimate": 3900,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "3010 Chenevert St"
+  },
+  {
+    "price": 471000,
+    "rentZestimate": 3194,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "11826 Glen Bay Ct"
+  },
+  {
+    "price": 265000,
+    "rentZestimate": 1832,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "19434 Camellia Knoll Trl"
+  },
+  {
+    "price": 2550000,
+    "rentZestimate": 15584,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "4619 Banning Dr"
+  },
+  {
+    "price": 299000,
+    "rentZestimate": 2050,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "1808 Bringhurst St"
+  },
+  {
+    "price": 220000,
+    "rentZestimate": 1800,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "11107 Pender Ln"
+  },
+  {
+    "price": 345000,
+    "rentZestimate": 2250,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "8022 Oahu Ct"
+  },
+  {
+    "price": 125000,
+    "rentZestimate": 1025,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "250 El Dorado Blvd #150"
+  },
+  {
+    "price": 449900,
+    "rentZestimate": 3264,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "3515 Shadow Bluff Ct"
+  },
+  {
+    "price": 210000,
+    "rentZestimate": 1798,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "11835 Chanteloup Dr"
+  },
+  {
+    "price": 325000,
+    "rentZestimate": 2205,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "7803 Bideford Ln"
+  },
+  {
+    "price": 340000,
+    "rentZestimate": 2163,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "10414 Crescent Moon Dr"
+  },
+  {
+    "price": 875000,
+    "rentZestimate": 5384,
+    "city": "houston",
+    "state": "tx",
+    "streetAddress": "1222 Glourie Dr"
+  }
+]

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -14,10 +15,12 @@ type Property struct {
 	RentZestimate float64 `json:"rentZestimate"`
 	City          string  `json:"city"`
 	State         string  `json:"state"`
-	Address         string  `json:"streetAddress"`
+	Address       string  `json:"streetAddress"`
 }
 
 var greatInvestments []Property
+
+const investmentPropertiesFile = "investmentProperties.json"
 
 func main() {
 	router := mux.NewRouter()
@@ -47,7 +50,7 @@ func generalSearch(w http.ResponseWriter, r *http.Request) {
 	req, _ := http.NewRequest("GET", url, nil)
 
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("X-RapidAPI-Key", "d8cb588467msh204401deaab20e0p1ea300jsnc14e4485c448")
+	req.Header.Add("X-RapidAPI-Key", "...")
 	req.Header.Add("X-RapidAPI-Host", "zillow56.p.rapidapi.com")
 
 	res, err := http.DefaultClient.Do(req)
@@ -74,10 +77,13 @@ func generalSearch(w http.ResponseWriter, r *http.Request) {
 		calculateInvestment(&copyProperty)
 	}
 
-	// Send the response as JSON
-	w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(responseBody)
+	err = storeInvestmentProperties(greatInvestments)
+	if err != nil {
+		fmt.Println("Error storing investment properties:", err)
+	}
 
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(responseBody)
 }
 
 func calculateInvestment(property *Property) {
@@ -94,14 +100,27 @@ func calculateInvestment(property *Property) {
 
 	fmt.Println("Price: $", price)
 	fmt.Println("Rent Zestimate: $", rentZestimate)
-	fmt.Println("Rent-to-Price Ratio: ", rentToPriceRatio)
-	fmt.Println("Annual Gross Yield: %.2f%%", annualGrossYield)
-	fmt.Println("Capitalization Rate: %.2f%%", capitalizationRate)
-	fmt.Println("Return on Investment (ROI): %.2f%%", roi)
+	fmt.Printf("Rent-to-Price Ratio: %.2f\n", rentToPriceRatio)
+	fmt.Printf("Annual Gross Yield: %.2f%%\n", annualGrossYield)
+	fmt.Printf("Capitalization Rate: %.2f%%\n", capitalizationRate)
+	fmt.Printf("Return on Investment (ROI): %.2f%%\n", roi)
 	fmt.Println()
 
 	if rentToPriceRatio > 0.006 && annualGrossYield > 7.25 && capitalizationRate > 7.2 && roi > 7.2 {
 		greatInvestments = append(greatInvestments, *property)
 	}
+}
 
+func storeInvestmentProperties(properties []Property) error {
+	jsonData, err := json.Marshal(properties)
+	if err != nil {
+		return err
+	}
+
+	err = ioutil.WriteFile(investmentPropertiesFile, jsonData, 0644)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
