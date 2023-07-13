@@ -5,18 +5,26 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	// "io"
+
 	"github.com/gorilla/mux"
 )
+
+type Property struct {
+	Price         float64 `json:"price"`
+	RentZestimate float64 `json:"rentZestimate"`
+	City          string  `json:"city"`
+	State         string  `json:"state"`
+	Address         string  `json:"streetAddress"`
+}
+
+var greatInvestments []Property
 
 func main() {
 	router := mux.NewRouter()
 
-	// Define your route
 	router.HandleFunc("/", homeHandler).Methods("GET")
 	router.HandleFunc("/general/{city}/{state}", generalSearch).Methods("GET")
 
-	// Start the server
 	fmt.Println("Server is running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
@@ -42,23 +50,58 @@ func generalSearch(w http.ResponseWriter, r *http.Request) {
 	req.Header.Add("X-RapidAPI-Key", "d8cb588467msh204401deaab20e0p1ea300jsnc14e4485c448")
 	req.Header.Add("X-RapidAPI-Host", "zillow56.p.rapidapi.com")
 
-	res, _ := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
 
 	defer res.Body.Close()
 	var responseBody struct {
-		Results []struct {
-			Bedrooms float64 `json:"bedrooms"`
-			StreetAddress string `json:"streetAddress"`
-			// Add other fields as needed to match the response structure
-		} `json:"results"`
+		Results []Property `json:"results"`
 	}
 
-	err := json.NewDecoder(res.Body).Decode(&responseBody)
+	err = json.NewDecoder(res.Body).Decode(&responseBody)
 	if err != nil {
-		// Handle error here
+		fmt.Println("Error:", err)
+		return
 	}
 
 	for _, property := range responseBody.Results {
-		fmt.Println("Property:", property.StreetAddress)
+		copyProperty := property
+		copyProperty.City = city
+		copyProperty.State = state
+		calculateInvestment(&copyProperty)
 	}
+
+	// Send the response as JSON
+	w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(responseBody)
+
+}
+
+func calculateInvestment(property *Property) {
+	price := property.Price
+	rentZestimate := property.RentZestimate
+
+	rentToPriceRatio := rentZestimate / price
+
+	annualGrossYield := (rentZestimate * 12) / price * 100
+
+	capitalizationRate := (rentZestimate * 12) / price * 100
+
+	roi := (rentZestimate * 12) / price * 100
+
+	fmt.Println("Price: $", price)
+	fmt.Println("Rent Zestimate: $", rentZestimate)
+	fmt.Println("Rent-to-Price Ratio: ", rentToPriceRatio)
+	fmt.Println("Annual Gross Yield: %.2f%%", annualGrossYield)
+	fmt.Println("Capitalization Rate: %.2f%%", capitalizationRate)
+	fmt.Println("Return on Investment (ROI): %.2f%%", roi)
+	fmt.Println()
+
+	if rentToPriceRatio > 0.006 && annualGrossYield > 7.25 && capitalizationRate > 7.2 && roi > 7.2 {
+		greatInvestments = append(greatInvestments, *property)
+	}
+
 }
